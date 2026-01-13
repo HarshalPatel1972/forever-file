@@ -14,6 +14,10 @@
     pkgs.glib
     pkgs.openssl
     pkgs.zlib
+    pkgs.cairo
+    pkgs.pango
+    pkgs.gdk-pixbuf
+    pkgs.atk
   ];
   idx = {
     extensions = [
