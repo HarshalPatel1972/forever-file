@@ -11,6 +11,9 @@
     pkgs.librsvg
     pkgs.libsoup
     pkgs.libappindicator-gtk3
+    pkgs.glib
+    pkgs.openssl
+    pkgs.zlib
   ];
   idx = {
     extensions = [
