@@ -1,0 +1,9 @@
+    Updating crates.io index
+error: failed to select a version for `tauri`.
+    ... required by package `tauri-appforever-file v0.1.0 (C:\Users\Harshal Patel\Desktop\test-22\src-tauri)`
+versions that meet the requirements `^2` are: 2.9.5, 2.9.4, 2.9.3, 2.9.2, 2.9.1, 2.9.0, 2.8.5, 2.8.4, 2.8.3, 2.8.2, 2.8.1, 2.8.0, 2.7.0, 2.6.2, 2.6.1, 2.6.0, 2.5.1, 2.5.0, 2.4.1, 2.4.0, 2.3.1, 2.3.0, 2.2.5, 2.2.4, 2.2.3, 2.2.2, 2.2.1, 2.2.0, 2.1.1, 2.1.0, 2.0.6, 2.0.5, 2.0.4, 2.0.3, 2.0.2, 2.0.1, 2.0.0
+
+package `tauri-appforever-file` depends on `tauri` with feature `bundle` but `tauri` does not have that feature.
+
+
+failed to select a version for `tauri` which could resolve this conflict
