@@ -185,7 +185,65 @@ P2P connection established and verified!
 
 ---
 
-## Current Project Structure
+## Phase 2: Tauri Bridge (Interop)
+
+### Goal
+Expose the P2P transfer logic to the React frontend without freezing the UI using an **Event-Driven Architecture**.
+
+### Implementation
+
+#### Step 1: Create Feature Branch
+```bash
+git checkout feat/core-engine
+git checkout -b feat/tauri-bridge
+```
+
+#### Step 2: Update Dependencies
+Replaced `magic-wormhole` with `iroh` in `src-tauri/Cargo.toml`:
+```toml
+iroh = "0.95"
+iroh-blobs = "0.35"
+tokio = { version = "1", features = ["full"] }
+```
+
+#### Step 3: Implement Event-Driven Commands (`lib.rs`)
+Key architecture decisions:
+- **`tokio::spawn`** for non-blocking background tasks
+- **`app.emit()`** to send events to frontend
+- **`app.clone()`** before moving into async threads
+
+Events implemented:
+| Event | Payload | Purpose |
+|-------|---------|---------|
+| `forever-file://ticket-generated` | `{ ticket: string }` | Share connection ticket |
+| `forever-file://progress` | `{ sent: number, total: number }` | Transfer progress |
+| `forever-file://complete` | `{ success: boolean, message: string }` | Transfer finished |
+| `forever-file://error` | `{ message: string }` | Error occurred |
+
+#### Step 4: Create TypeScript Types (`src/types.ts`)
+```typescript
+export interface TicketGeneratedEvent { ticket: string; }
+export interface ProgressEvent { sent: number; total: number; }
+export interface TransferCompleteEvent { success: boolean; message: string; }
+export interface ErrorEvent { message: string; }
+```
+
+#### Step 5: Add Frontend Listeners (`App.tsx`)
+- Added `useEffect` with `listen()` for all events
+- Created test button to invoke `start_send`
+- Live event log display
+
+#### Step 6: Commit
+```bash
+git commit -m "feat(bridge): implement event-driven tauri commands for async file transfer"
+git push origin feat/tauri-bridge
+```
+
+**✅ Phase 2 Result: Implementation Complete (Pending Verification)**
+
+---
+
+## Next Steps (Phase 3)
 ```
 forever-file/
 ├── .idx/
