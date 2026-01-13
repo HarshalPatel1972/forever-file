@@ -1,0 +1,13 @@
+[package]
+name = "wormhole-test"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+magic-wormhole = "0.6"
+tokio = { version = "1", features = ["full"] }
+thiserror = "2"
+
+[[bin]]
+name = "test_transfer"
+path = "src/main.rs"
